@@ -9,7 +9,6 @@ import {
 
 function AppHeader() {
   return (
-    <>
       <header className={`${styles["app-header"]} ml-10 mr-10 mt-10`}>
         <div className={`${styles["burger-buttons"]} pt-4 pb-4`}>
           <a
@@ -38,7 +37,6 @@ function AppHeader() {
           <p className="text text_type_main-default text_color_inactive pl-2">Личный кабинет</p>
         </a>
       </header>
-    </>
   );
 }
 
