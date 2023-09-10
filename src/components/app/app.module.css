@@ -13,4 +13,5 @@
 .main {
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
 }

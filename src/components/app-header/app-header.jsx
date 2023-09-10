@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./app-header.module.css";
 import {
   Logo,
@@ -10,6 +9,7 @@ import {
 function AppHeader() {
   return (
       <header className={`${styles["app-header"]} ml-10 mr-10 mt-10`}>
+        <div className={styles.container}>
         <div className={`${styles["burger-buttons"]} pt-4 pb-4`}>
           <a
             href="#1"
@@ -36,6 +36,7 @@ function AppHeader() {
           <ProfileIcon type="secondary" />
           <p className="text text_type_main-default text_color_inactive pl-2">Личный кабинет</p>
         </a>
+        </div>
       </header>
   );
 }

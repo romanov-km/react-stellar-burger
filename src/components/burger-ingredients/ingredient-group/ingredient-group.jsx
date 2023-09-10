@@ -1,4 +1,5 @@
 import styles from "./ingredient-group.module.css";
+import PropTypes from 'prop-types';
 
 function IngredientGroup(props) {
   return (
@@ -10,3 +11,8 @@ function IngredientGroup(props) {
 }
 
 export default IngredientGroup;
+
+IngredientGroup.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
+}
