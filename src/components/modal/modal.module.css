@@ -1,0 +1,14 @@
+.modal {
+    border-radius: 40px;
+    background: var(--interface-modal-bg, #1C1C21);
+    position: absolute;
+    top: 25%;
+    left: 25%;
+}
+
+.closeicon {
+    position: absolute;
+    top: 60px;
+    right: 40px;
+
+}

@@ -10,9 +10,9 @@ function IngredientGroup(props) {
   );
 }
 
-export default IngredientGroup;
-
 IngredientGroup.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 }
+
+export default IngredientGroup;

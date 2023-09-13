@@ -2,14 +2,29 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-ingredients.module.css";
 import React from "react";
 import IngredientItem from "./ingredient-item/ingredient-item";
-import { data } from "../../utils/data";
 import IngredientGroup from "./ingredient-group/ingredient-group";
+import IngredientDetails from "../ingredient-details/ingredient-details";
+import Modal from "../modal/modal";
+import ModalOverlay from "../modal-overlay/modal-overlay";
 
-function BurgerIngredients() {
+function BurgerIngredients({ ingredients }) {
   const [current, setCurrent] = React.useState("one");
-  const bunItems = data.filter(item => item.type === 'bun');
-  const sauceItems = data.filter(item => item.type === 'sauce');
-  const mainItems = data.filter(item => item.type === 'main');
+
+  const bunItems = ingredients.filter((item) => item.type === "bun");
+  const sauceItems = ingredients.filter((item) => item.type === "sauce");
+  const mainItems = ingredients.filter((item) => item.type === "main");
+
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [ingredient, setIngredient] = React.useState(null);
+
+  const openModal = (item) => {
+    setIngredient(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen();
+  };
 
   return (
     <section className={styles["container"]}>
@@ -30,36 +45,47 @@ function BurgerIngredients() {
         <IngredientGroup title={"Булки"}>
           {bunItems.map((item) => (
             <IngredientItem
-            image={item.image}
-            name={item.name}
-            price={item.price}
-            counter={1}
-            key={item._id}
-          />
+              image={item.image}
+              name={item.name}
+              price={item.price}
+              counter={1}
+              key={item._id}
+              onClick={() => openModal(item)}
+            />
           ))}
         </IngredientGroup>
 
         <IngredientGroup title={"Соусы"}>
           {sauceItems.map((item) => (
-          <IngredientItem
-            image={item.image}
-            name={item.name}
-            price={item.price}
-            key={item._id}
-          />))}
+            <IngredientItem
+              image={item.image}
+              name={item.name}
+              price={item.price}
+              key={item._id}
+              onClick={() => openModal(item)}
+            />
+          ))}
         </IngredientGroup>
 
         <IngredientGroup title={"Начинки"}>
           {mainItems.map((item) => (
             <IngredientItem
-            image={item.image}
-            name={item.name}
-            price={item.price}
-            key={item._id}
-          />
+              image={item.image}
+              name={item.name}
+              price={item.price}
+              key={item._id}
+              onClick={() => openModal(item)}
+            />
           ))}
         </IngredientGroup>
       </div>
+      {isModalOpen && (
+          <ModalOverlay onClose={closeModal}>
+            <Modal onClose={closeModal}>
+            <IngredientDetails ingredients={ingredient} />
+            </Modal>
+          </ModalOverlay>
+        )}
     </section>
   );
 }
