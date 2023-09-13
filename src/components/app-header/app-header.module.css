@@ -1,0 +1,34 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.app-header {
+    background: var(--interface-modal-bg, #1C1C21);
+}
+
+.container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;   
+}
+
+.burger-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.logo {
+    display: flex;
+    padding-left: 112px;
+    padding-right: 288px;
+}
+
+.burger-link {
+    text-decoration: none;
+    display: flex;
+    flex-wrap: nowrap;
+    color: var(--text-active-color);
+}

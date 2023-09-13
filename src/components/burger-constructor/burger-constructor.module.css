@@ -1,0 +1,16 @@
+.container {
+    width: 600px;
+}
+
+.order {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.price {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
