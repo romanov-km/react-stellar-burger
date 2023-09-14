@@ -5,26 +5,23 @@ import IngredientItem from "./ingredient-item/ingredient-item";
 import IngredientGroup from "./ingredient-group/ingredient-group";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import Modal from "../modal/modal";
-import ModalOverlay from "../modal-overlay/modal-overlay";
+import PropTypes from "prop-types";
+import { useModal } from "../hooks/useModal";
 
 function BurgerIngredients({ ingredients }) {
   const [current, setCurrent] = React.useState("one");
+  const [ingredient, setIngredient] = React.useState(null);
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   const bunItems = ingredients.filter((item) => item.type === "bun");
   const sauceItems = ingredients.filter((item) => item.type === "sauce");
   const mainItems = ingredients.filter((item) => item.type === "main");
 
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [ingredient, setIngredient] = React.useState(null);
-
-  const openModal = (item) => {
+  const handleIngredientClick = (item) => {
     setIngredient(item);
-    setIsModalOpen(true);
+    openModal();
   };
 
-  const closeModal = () => {
-    setIsModalOpen();
-  };
 
   return (
     <section className={styles["container"]}>
@@ -50,7 +47,7 @@ function BurgerIngredients({ ingredients }) {
               price={item.price}
               counter={1}
               key={item._id}
-              onClick={() => openModal(item)}
+              onClick={() => handleIngredientClick(item)}
             />
           ))}
         </IngredientGroup>
@@ -62,7 +59,7 @@ function BurgerIngredients({ ingredients }) {
               name={item.name}
               price={item.price}
               key={item._id}
-              onClick={() => openModal(item)}
+              onClick={() => handleIngredientClick(item)}
             />
           ))}
         </IngredientGroup>
@@ -74,20 +71,24 @@ function BurgerIngredients({ ingredients }) {
               name={item.name}
               price={item.price}
               key={item._id}
-              onClick={() => openModal(item)}
+              onClick={() => handleIngredientClick(item)}
             />
           ))}
         </IngredientGroup>
       </div>
       {isModalOpen && (
-          <ModalOverlay onClose={closeModal}>
+          
             <Modal onClose={closeModal}>
-            <IngredientDetails ingredients={ingredient} />
+            <IngredientDetails ingredient={ingredient} />
             </Modal>
-          </ModalOverlay>
+          
         )}
     </section>
   );
 }
+
+BurgerIngredients.propTypes = {
+  ingredients: PropTypes.array.isRequired,
+};
 
 export default BurgerIngredients;

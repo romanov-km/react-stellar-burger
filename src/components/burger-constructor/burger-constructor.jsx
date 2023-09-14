@@ -7,19 +7,12 @@ import {
 import React from "react";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
-import ModalOverlay from "../modal-overlay/modal-overlay";
 import PropTypes from 'prop-types';
+import { useModal } from "../hooks/useModal";
 
 function BurgerConstructor({ ingredients }) {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   return (
     <section className={`${styles.container} pl-10 pt-25`}>
@@ -40,15 +33,19 @@ function BurgerConstructor({ ingredients }) {
           Оформить заказ
         </Button>
         {isModalOpen && (
-          <ModalOverlay onClose={closeModal}>
+          
             <Modal onClose={closeModal}>
               <OrderDetails />
             </Modal>
-          </ModalOverlay>
+          
         )}
       </div>
     </section>
   );
 }
+
+BurgerConstructor.propTypes = {
+  ingredients: PropTypes.array.isRequired,
+};
 
 export default BurgerConstructor;

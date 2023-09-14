@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     getAllIngridients()
     .then(data => {setIngridients(data)})
-    .catch(err => console.log(err))
+    .catch(console.error)
   }, [])
 
   return (
