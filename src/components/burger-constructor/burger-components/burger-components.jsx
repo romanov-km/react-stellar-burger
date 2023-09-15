@@ -4,10 +4,11 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { data } from "../../../utils/data";
 import styles from "./burger-components.module.css";
+import PropTypes from 'prop-types';
 
 function BurgerComponents(props) {
-  const bunIngredients = data.filter((item) => item.type !== "bun");
-
+  const bunIngredients = props.data.filter((item) => item.type !== "bun");
+  
   return (
     <div className={`${styles["burger-components"]} pl-4`}>
       <div className="pl-8">
@@ -42,6 +43,10 @@ function BurgerComponents(props) {
       </div>
     </div>
   );
+}
+
+BurgerComponents.propTypes = {
+  data: PropTypes.array.isRequired,
 }
 
 export default BurgerComponents;

@@ -3,10 +3,11 @@ import {
   Counter,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from 'prop-types';
 
 function IngredientItem(props) {
   return (
-    <div className={`${styles.container}`}>
+    <div className={`${styles.container}`} onClick={props.onClick}>
       {props.counter >= 1 && <Counter count={1} size="default" />}
       <img src={props.image} alt={props.name} className="pl-4 pr-4"></img>
       <div className={`${styles.price} pt-1 pb-3`}>
@@ -18,6 +19,14 @@ function IngredientItem(props) {
       </p>
     </div>
   );
+}
+
+IngredientItem.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  counter: PropTypes.number,
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired
 }
 
 export default IngredientItem;
