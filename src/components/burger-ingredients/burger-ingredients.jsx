@@ -6,7 +6,7 @@ import IngredientGroup from "./ingredient-group/ingredient-group";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import Modal from "../modal/modal";
 import PropTypes from "prop-types";
-import { useModal } from "../hooks/useModal";
+import { useModal } from "../../hooks/useModal";
 
 function BurgerIngredients({ ingredients }) {
   const [current, setCurrent] = React.useState("one");

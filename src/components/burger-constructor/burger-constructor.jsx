@@ -8,7 +8,7 @@ import React from "react";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import PropTypes from 'prop-types';
-import { useModal } from "../hooks/useModal";
+import { useModal } from "../../hooks/useModal";
 
 function BurgerConstructor({ ingredients }) {
 
